@@ -16,15 +16,13 @@ services:
       - key: CORS_ORIGINS
         value: https://numia-performance-review.onrender.com
 
-  # Frontend - React/Vite (Static Site)
-  - type: static
+  # Frontend - React/Vite with Nginx
+  - type: web
     name: numia-performance-review
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: ./frontend/dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: VITE_API_URL
-        value: https://numia-performance-api.onrender.com
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    region: oregon
+    plan: free
+    buildArgs:
+      VITE_API_URL: https://numia-performance-api.onrender.com
