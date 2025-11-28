@@ -16,13 +16,12 @@ services:
       - key: CORS_ORIGINS
         value: https://numia-frontend.onrender.com
 
-  # Frontend - React/Vite (Static Site)
-  - type: web
+staticSites:
+  # Frontend - React/Vite
+  - type: static
     name: numia-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
     routes:
       - type: rewrite
         source: /*
