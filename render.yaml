@@ -24,5 +24,3 @@ services:
     dockerContext: ./frontend
     region: oregon
     plan: free
-    buildArgs:
-      VITE_API_URL: https://performance-review-numia-api.onrender.com
